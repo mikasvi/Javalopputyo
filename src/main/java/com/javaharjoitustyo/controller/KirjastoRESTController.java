@@ -43,17 +43,17 @@ public class KirjastoRESTController {
         }
         return null;
     }    
-    
+    // REST-rajapinta, jolla haetaan kaikki kirjat
     @GetMapping("/kirjat")
     public List<Kirja> getKirjat() {
         return kirjasto.getKirjat();
     }
-    
+    // REST-rajapinta, jolla lisätään uusi kirja
     @PostMapping("/lisaaKirja")
     public void lisaaKirja(@RequestBody Kirja kirja) {
         kirjasto.lisaaKirja(kirja);
     }
-    
+    // REST-rajapinta, jolla poistetaan kirja
     @DeleteMapping("/poistaKirja/{nimi}")
     public void poistaKirja(@PathVariable String nimi) {
         for (Kirja kirja : kirjasto.getKirjat()) {
@@ -63,6 +63,7 @@ public class KirjastoRESTController {
             }
         }
     }
+    // REST-rajapinta, jolla lainataan kirja halutulle asiakkaalle
     @PostMapping("/lainaa")
     public ResponseEntity<Object> lainaaKirja(@RequestParam String asiakasNimi, @RequestParam String kirjanNimi) {
     Asiakas asiakas = null;
